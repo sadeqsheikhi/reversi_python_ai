@@ -1,3 +1,4 @@
+
 var log = function (x) { return console.log(arguments), x; },
   parse = JSON.parse,
   filter = function(obj, keys) {
@@ -50,6 +51,8 @@ var log = function (x) { return console.log(arguments), x; },
   }
 
 $(document)
+
+  //  On clicking New Game The Box Slides Down or Up
   .on('click', 'button#new', function(){
     $('#message').html(id('/new-game').innerHTML).slideDown();
   })
@@ -57,14 +60,20 @@ $(document)
     $('#message').slideUp();
     return false;
   })
+
+  // spectate button to watch games in all games list
   .on('click', 'button.watch', function(e){
     location.hash = '/game/'+ $(e.target).parent().data('id');
   })
+
+  //  send post message for creating a new game
   .on('submit', '#new-game', function(e){
     e.preventDefault();
     $('#message').hide();
     $.post('/create', {name: id('name').value, ai: id('has-ai').checked}, enterGame);
   })
+
+
   .on('click', 'button.join', function(){
     var data = {
       id: $(this).parent().parent().data('id'),
@@ -73,16 +82,22 @@ $(document)
     };
     $.post('/join', data, enterGame)
   })
+
+  //  handles clicking on a tile
   .on('click', '#game td', function(){
     var data = filter(parse(LS.GAME), ['id', 'white_token', 'black_token'])
     data['idx'] = $('#game td').index(this) // row, col
     $.post('/play', data)
   })
+
+
   .on('click', 'a[href$="#/game"]', function(){
     if (LS.GAME)
       return location.hash = '/game/' + parse(LS.GAME).id, false;
     return alert('You are not currently in a game'), false;
   })
+
+
 var actions = {
   game: function(data){
     load('/game', game(data));
@@ -94,6 +109,8 @@ var actions = {
     }).join(''));
   }
 }
+
+
 window.onhashchange = function (e) {
   var page = location.hash.slice(2);
   $.get(page, function (data){

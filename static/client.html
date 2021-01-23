@@ -1,13 +1,16 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Reversi</title>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="static/style.css">
-
+    <title>Reversi</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
-<h1>Reversi</h1>
+<h1 class="text-4xl mt-10">Reversi(Othello) Game</h1>
+<hr>
+
 <nav>
 <a href="#/games">all games</a>
 <a href="#/game">my game</a>
@@ -58,6 +61,7 @@
 	<div id="game">{{game}}</div>
 </script>
 
+<h3 class="copyright uppercase p-5 absolute bottom-0">Developed By Sadeq Sheikhi - Eqbal Amin Nezhad</h3>
 
 <script src="static/script.js"></script>
 </body>
