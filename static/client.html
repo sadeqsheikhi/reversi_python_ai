@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Reversi</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="static/style.css">
+
+</head>
+<body>
+<h1>Reversi</h1>
+<nav>
+<a href="#/games">all games</a>
+<a href="#/game">my game</a>
+</nav>
+<main></main>
+<div id="message"></div>
+<!---------------------------- TEMPLATES ---------------------------->
+<script type="text/template" id="/games">
+	<section>
+		<h1>Active games</h1>
+		<ul id="active-games"></ul>
+		<button id="new">New Game</button>
+	</section>
+</script>
+
+<script type="text/template" id="/new-game">
+	<form id="new-game">
+		<fieldset>
+			<button id="cancel">X</button>
+			<label>
+				Your Name
+				<input id="name" placeholder="My name">
+			</label>
+			<label>
+				Enable AI
+				<input id="has-ai" type="checkbox">
+			</label>
+			<button>Create</button>
+		</fieldset>
+	</form>
+</script>
+
+<script type="text/template" id="/game-state">
+	<li data-id="{{id}}">
+		Black - <span class="black">{{black}}</span>
+		White - <span class="white">{{white}}</span>
+		<button class="watch">Spectate</button>
+	</li>
+</script>
+
+<script type="text/template" id="/game">
+	<div id="status">
+		<span class="black">{{black}} (black)</span> - {{black_count}}<br>
+		<span class="white">{{white}} (white)</span> - {{white_count}}<br>
+		Game state - {{state}}<br>
+		Current player - {{player}}
+	</div>
+	<div id="game">{{game}}</div>
+</script>
+
+
+<script src="static/script.js"></script>
+</body>
+</html>

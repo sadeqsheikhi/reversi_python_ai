@@ -1,0 +1,143 @@
+
+html {
+    font-family: tahoma;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #374;
+}
+
+h1 {
+    text-align: center;
+    margin: 5px;
+}
+
+nav {
+    background-color: #596;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 5px;
+}
+
+nav a:hover {
+    background-color: #152;
+}
+
+main {
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#game {
+    padding: 10px;
+}
+
+#game td{
+    width:50px;
+    height: 50px;
+    border:1px solid gray;
+}
+
+td span {
+    border-radius: 50%;
+    margin: 5px;
+    height: 40px;
+    width: 40px;
+    display: block;
+}
+
+#game table {
+    margin: auto;
+    background: #031;
+    border-collapse: collapse;
+}
+
+#game td {
+    border-width: 2px;
+    padding: 3px;
+    border-color: #595;
+}
+#game span {
+    border: 1px solid transparent;
+}
+#game span.b, #game span.w {
+    border-color: #999;
+}
+
+#game .b {
+    background: #000;
+}
+
+#game .w {
+    background: #fff;
+}
+
+#status {
+    background: #7b8;
+    width: 80%;
+    margin: 0 10%;
+    border-radius: 0 0 30px 30px;
+}
+#message fieldset{
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    border: 2px solid black;
+    position: relative;
+    border-radius: 10px;
+    background: #596;
+}
+
+#message label {
+    display: block;
+    padding: 5px;
+    text-align: left;
+}
+
+#message #cancel {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    border-radius: 50%;
+    font-weight: bold;
+    border: 1px solid black;
+    width: 22px;
+    height: 22px;
+}
+
+button {
+    border-radius: 10px;
+}
+
+#active-games li {
+    border: 1px solid lightgreen;
+    list-style:none;
+    line-height: 26px;
+}
+
+#active-games {
+    width: 500px;
+    margin: auto;
+}
+
+#active-games .watch {
+    float: right;
+}
+
