@@ -12,56 +12,58 @@
 <hr>
 
 <nav>
-<a href="#/games">all games</a>
-<a href="#/game">my game</a>
+<a href="#/games" class="p-4 mr-4 font-bold text-lg">all games</a>
+<a href="#/game" class="p-4 text-lg">my game</a>
 </nav>
 <main></main>
 <div id="message"></div>
 <!---------------------------- TEMPLATES ---------------------------->
 <script type="text/template" id="/games">
 	<section>
-		<h1>Active games</h1>
+		<h1 class="capitalize">Active games</h1>
 		<ul id="active-games"></ul>
-		<button id="new">New Game</button>
+		<button id="new" class="mt-4 p-4">New Game</button>
 	</section>
 </script>
 
 <script type="text/template" id="/new-game">
-	<form id="new-game">
-		<fieldset>
-			<button id="cancel">X</button>
-			<label>
-				Your Name
-				<input id="name" placeholder="My name">
-			</label>
-			<label>
-				Enable AI
-				<input id="has-ai" type="checkbox">
-			</label>
-			<button>Create</button>
+	<form id="new-game" class="flex flex-row items-center justify-center mt-4">
+		<fieldset class="p-6 rounded-sm">
+            <button id="cancel" class="p-4 text-center flex flex-row justify-center items-center"><span class="text-lg">&times;</span></button>
+				<input class="px-6 py-3 rounded-sm mx-4 w-80 mb-4" id="name" placeholder="Enter Your Name Here"/>
+				<input id="has-ai" type="checkbox" checked class="hidden">
+			<button class="btn px-6 py-3 rounded-sm uppercase" type="submit">Create</button>
 		</fieldset>
 	</form>
 </script>
 
 <script type="text/template" id="/game-state">
-	<li data-id="{{id}}">
-		Black - <span class="black">{{black}}</span>
-		White - <span class="white">{{white}}</span>
-		<button class="watch">Spectate</button>
+	<li data-id="{{id}}" class="flex flex-row flex-nowrap justify-between items-center">
+		<div>
+            Black = <span class="black mr-4">{{black}}</span>
+            White = <span class="white">{{white}}</span>
+        </div>
+		<button class="watch underline">Spectate</button>
 	</li>
 </script>
 
 <script type="text/template" id="/game">
-	<div id="status">
-		<span class="black">{{black}} (black)</span> - {{black_count}}<br>
-		<span class="white">{{white}} (white)</span> - {{white_count}}<br>
+	<div id="status" class="flex flex-col justify-center item-center">
+        <p class="status-heading text-xl font-bold uppercase mb-4 p-2">Game Status</p>
+		<div>
+            <span class="black">{{black}} (black)</span> - {{black_count}}<br>
+        </div>
+		<div>
+            <span class="white">{{white}} (white)</span> - {{white_count}}<br>
+        </div>
+        <hr class="my-2">
 		Game state - {{state}}<br>
-		Current player - {{player}}
+		<strong>Current player - {{player}}</strong>
 	</div>
 	<div id="game">{{game}}</div>
 </script>
 
-<h3 class="copyright uppercase p-5 absolute bottom-0">Developed By Sadeq Sheikhi - Eqbal Amin Nezhad</h3>
+<h3 class="copyright uppercase p-5 m-auto text-center mt-8 absolute bottom-0">Developed By Sadeq Sheikhi - Eqbal Amin Nezhad</h3>
 
 <script src="static/script.js"></script>
 </body>

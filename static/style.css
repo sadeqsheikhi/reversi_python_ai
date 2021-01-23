@@ -9,6 +9,12 @@ html, body {
     height: 100%;
     margin: 0;
     color: white;
+    min-width: 100vh;
+}
+
+
+input {
+    color: #333333;
 }
 
 body {
@@ -26,6 +32,7 @@ h1 {
 nav {
     background-color: #596;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 nav a {
@@ -36,8 +43,11 @@ nav a {
     padding: 5px;
 }
 
+nav a {
+    transition: all ease .3s;
+}
 nav a:hover {
-    background-color: #152;
+    background-color: crimson;
 }
 
 main {
@@ -95,19 +105,37 @@ td span {
 }
 
 #status {
-    background: #7b8;
-    width: 80%;
-    margin: 0 10%;
-    border-radius: 0 0 30px 30px;
+    background: rgba(0,0,0,.3);
+    padding: 20px 40px;
+    min-height: 30vh;
+    border-radius: 0 5px 5px 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.status-heading {
+    border-bottom: 2px solid lightgreen;
+    color: #ff3d61;
+}
+
+#status strong {
+    padding: 5px 10px;
+    margin-top: 5px;
+    border: 3px solid #ff3d61;
+}
+hr {
+    border:none;
+    background: transparent;
+    border-bottom: 2px solid lightgreen;
 }
 #message fieldset{
     text-align: center;
     width: 300px;
     margin: auto;
-    border: 2px solid black;
     position: relative;
-    border-radius: 10px;
-    background: #596;
+    background: rgba(0,0,0,.3);
 }
 
 #message label {
@@ -132,9 +160,10 @@ button {
 }
 
 #active-games li {
-    border: 1px solid lightgreen;
+    border-bottom: 1px solid lightgreen;
     list-style:none;
     line-height: 26px;
+    padding: 10px;
 }
 
 #active-games {
@@ -147,6 +176,24 @@ button {
 }
 
 .copyright {
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
 }
+
+.btn {
+    background: crimson;
+}
+#cancel {
+    background: crimson;
+    color: white;
+    border: 1px solid red;
+    opacity: .5;
+}
+
+#new {
+    background: rgba(50,50,50, .4);
+}
+
+.watch {
+    color: #ff3d61;
+}
+
