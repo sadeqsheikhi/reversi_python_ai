@@ -6,6 +6,7 @@ class ReversiAI():
     # runs the minimax with precision
     @staticmethod
     def get_next_move(board, player):
+        # the depth argument defines how many levels deep we go before using heuristic
         _, move = ReversiAI.minimax(board, 2, player)
         return move
 
@@ -18,6 +19,7 @@ class ReversiAI():
             return (ReversiAI.game_heuristic(board), None)
 
         best_move = None
+        # if it is a max node
         if player == AIHelper.MAX_PLAYER:
             best_value = -AIHelper.INFINITY
             available_moves = helper.available_moves(
@@ -31,6 +33,8 @@ class ReversiAI():
                     best_value = value
                     best_move = move
             return (best_value, best_move)
+
+        # if it is a min node
         else:
             best_value = AIHelper.INFINITY
             available_moves = helper.available_moves(
@@ -63,8 +67,11 @@ class ReversiAI():
         f = 0
         d = 0
 
+        # these two are used for going in every 8 directions
         X1 = [-1, -1, 0, 1, 1, 1, 0, -1]
         Y1 = [0, 1, 1, 1, 0, -1, -1, -1]
+
+        # wondering where this came from? check the link in the github ripo from University of Washington
         V = [
             [20, -3, 11, 8, 8, 11, -3, 20],
             [-3, -7, -4, 1, 1, -4, -7, -3],
@@ -76,7 +83,9 @@ class ReversiAI():
             [20, -3, 11, 8, 8, 11, -3, 20]
         ]
 
-        # Piece difference, frontier disks and disk squares
+        # =============================================================================================
+        # 1- Piece difference, frontier disks and disk squares
+        # =============================================================================================
         for i in range(8):
             for j in range(8):
                 if board[i][j] == my_color:
@@ -85,6 +94,9 @@ class ReversiAI():
                 elif board[i][j] == opp_color:
                     d -= V[i][j]
                     opp_tiles += 1
+
+                # calculates the number of blank spaces around me
+                # if the tile is not empty take a step in each direction
                 if board[i][j] != ' ':
                     for k in range(8):
                         x = i + X1[k]
@@ -97,6 +109,9 @@ class ReversiAI():
                                 opp_front_tiles += 1
                             break
 
+        # =============================================================================================
+        # 2 - calculates the difference between current colored tiles
+        # =============================================================================================
         if my_tiles > opp_tiles:
             p = (100.0 * my_tiles) / (my_tiles + opp_tiles)
         elif my_tiles < opp_tiles:
@@ -104,6 +119,9 @@ class ReversiAI():
         else:
             p = 0
 
+        # =============================================================================================
+        # 3- calculates the blank Spaces around my tiles
+        # =============================================================================================
         if my_front_tiles > opp_front_tiles:
             f = -(100.0 * my_front_tiles) / (my_front_tiles + opp_front_tiles)
         elif my_front_tiles < opp_front_tiles:
@@ -111,7 +129,14 @@ class ReversiAI():
         else:
             f = 0
 
-        # Corner occupancy
+        # ===============================================================================================
+        # 4 - Corner occupancy
+        '''
+        Examine all 4 corners :
+        if they were my color add a point to me 
+        if they were enemies add a point to the enemy
+        '''
+        # ===============================================================================================
         my_tiles = opp_tiles = 0
         if board[0][0] == my_color:
             my_tiles += 1
@@ -131,7 +156,14 @@ class ReversiAI():
             opp_tiles += 1
         c = 25 * (my_tiles - opp_tiles)
 
-        # Corner closeness
+        # ===============================================================================================
+        # 5 - CORNER CLOSENESS
+        '''
+        If the corner is empty then find out how many of the 
+        adjacent block to the corner are AI's or the player's
+        if AI's tiles were mote than players than it's a bad thing.
+        '''
+        # ===============================================================================================
         my_tiles = opp_tiles = 0
         if board[0][0] == ' ':
             if board[0][1] == my_color:
@@ -191,14 +223,16 @@ class ReversiAI():
 
         l = -12.5 * (my_tiles - opp_tiles)
 
-        # Mobility
+        # ===============================================================================================
+        # 6 - Mobility
+        # ===============================================================================================
         '''
         It attempts to capture the relative difference between 
         the number of possible moves for the max and the min players,
         with the intent of restricting the
         opponent’s mobility and increasing one’s own mobility
         '''
-        # basically it calculates the difference between the tiles after a move
+        # basically it calculates the difference between available moves
         my_tiles = len(AIHelper().available_moves(board, AIHelper.MAX_PLAYER))
         opp_tiles = len(AIHelper().available_moves(board, AIHelper.MIN_PLAYER))
 
@@ -209,6 +243,9 @@ class ReversiAI():
         else:
             m = 0
 
+        # =============================================================================================
+        # =============================================================================================
         # final weighted score
+        # adding different weights to different evaluations
         return (10 * p) + (801.724 * c) + (382.026 * l) + \
                (78.922 * m) + (74.396 * f) + (10 * d)
