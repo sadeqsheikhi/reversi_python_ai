@@ -41,3 +41,7 @@ install flask and uuid packages first and then run server.py file
 ` $ pip install Flask uuid `
 ## RUN
 ` $ python server.py `
+
+## License
+
+MIT 2021
